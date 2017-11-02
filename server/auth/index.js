@@ -39,4 +39,6 @@ router.get('/me', (req, res) => {
   res.json(req.user)
 })
 
+//auth - change password/email => Security! auth set password route; remove from user routes
+
 router.use('/google', require('./google'))
