@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { generateBoard } from '../store';
 import Card from './Card.jsx'
 
-export default function Board (props) {
-  //hard-coded for now
-  const board = [[1,2,0,1], [2,1,0,2], [0,0,0,0], [2,2,0,0], [0,2,1,2], [1,2,1,1]]
-  return (
-    <div className="board">
-      {board.map((elem, idx) =>(
-        <Card key={idx} cardProps={elem} />
-      ))}
-    </div>
-  )
+class Board extends Component {
+  componentDidMount() {
+    this.props.getNewBoard();
+  }
+
+  render() {
+    const { board } = this.props;
+    return (
+      <div className="board">
+        {board.map((elem, idx) =>(
+          <Card key={idx} cardProps={elem} />
+        ))}
+      </div>
+    )
+  }
 }
 
 
 const mapState = ({ board }) => ({ board })
+const mapDispatch = (dispatch) => ({
+  getNewBoard() {
+    dispatch(generateBoard())
+  }
+})
+
+export default connect(mapState, mapDispatch)(Board)

@@ -18,7 +18,7 @@ export function generateBoard(numCards = 9, currentBoard = []) {
 }
 
 function generateRandomNum(min = 0, max = 2) {
-  return (Math.round(max - min) * Math.random() + min)
+  return (Math.round((max - min) * Math.random()) + min)
 }
 
 function generateRandomCard() {
@@ -26,6 +26,7 @@ function generateRandomCard() {
   for (let i = 0; i < 4; i++) {
     card.push(generateRandomNum());
   }
+  console.log("card", card);
   return card;
 }
 
